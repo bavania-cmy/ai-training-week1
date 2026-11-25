@@ -1,0 +1,51 @@
+import pandas as pd
+
+# Read CSV file
+df = pd.read_csv("employees.csv")
+
+print("Employee Data:")
+print(df)
+
+# Display first 5 records
+print("Head:")
+print(df.head())
+
+# Display information
+print("Info:")
+df.info()
+
+# Statistical summary
+print("Describe:")
+print(df.describe())
+
+# Select name column
+print("Names:")
+print(df["name"])
+
+# Select name and salary
+print("Name and Salary:")
+print(df[["name", "salary"]])
+
+# Using loc - Chennai employees
+chennai = df.loc[df["city"] == "Chennai", "name"]
+
+print("Chennai Employees:")
+print(chennai)
+
+#Using iloc
+print("First 3 rows and columns 2 to 3:")
+print(df.iloc[0:3, 1:3])
+
+# Salary above 50000
+high_salary = df[df["salary"] > 50000]
+
+print("Salary above 50000:")
+print(high_salary)
+print("Count:", len(high_salary))
+
+#  IT department employees
+it_employees = df[df["department"] == "IT"]
+
+print("IT Department:")
+print(it_employees["name"])
+print("Count:", len(it_employees))

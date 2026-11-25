@@ -1,0 +1,50 @@
+import numpy as np
+
+#Create a NumPy array
+marks = np.array([
+    [70, 80, 90],
+    [60, 75, 85],
+    [88, 92, 79],
+    [55, 65, 70]
+])
+
+print("Original Array:")
+print(marks)
+
+# Print shape, dtype and size
+print("Shape:", marks.shape)
+print("Data Type:", marks.dtype)
+print("Size:", marks.size)
+
+#  Slicing - First two students and last subject
+print("First two students:")
+print(marks[:2, :])
+
+print("Last subject:")
+print(marks[:, -1])
+
+#  Calculate averages
+student_avg = np.mean(marks, axis=1)
+subject_avg = np.mean(marks, axis=0)
+
+print("Student averages:", student_avg)
+print("Subject averages:", subject_avg)
+
+# Broadcasting - Add 5 grace marks
+grace_marks = marks + 5
+print("After adding grace marks:")
+print(grace_marks)
+
+# Weighted scores
+weights = np.array([0.3, 0.3, 0.4])
+
+weighted_scores = np.dot(marks, weights)
+print("Weighted scores:", weighted_scores)
+
+# Reshape
+arr = np.arange(12)
+reshaped_arr = arr.reshape(3, 4)
+
+print("Original range:", arr)
+print("Reshaped array:")
+print(reshaped_arr)

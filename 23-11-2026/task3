@@ -1,0 +1,42 @@
+import pandas as pd
+
+# Read CSV file
+df = pd.read_csv("orders.csv")
+
+print("Original Data:")
+print(df)
+
+# Find missing values
+print("Missing Values:")
+print(df.isna().sum())
+
+# Find duplicate rows
+print("Duplicate Rows:")
+print(df.duplicated().sum())
+
+# Remove duplicate rows
+df = df.drop_duplicates()
+
+# Calculate median
+median_value = df["amount"].median()
+
+print("Median:", median_value)
+
+# Fill missing amount with median
+df["amount"] = df["amount"].fillna(median_value)
+
+# Convert data types
+df["amount"] = pd.to_numeric(df["amount"])
+df["order_id"] = df["order_id"].astype(str)
+
+print("Cleaned Data:")
+print(df)
+
+# Group by customer_id and aggregate
+result = df.groupby("customer_id").agg(
+    total=("amount", "sum"),
+    orders=("order_id", "count")
+)
+
+print("Customer Summary:")
+print(result)
